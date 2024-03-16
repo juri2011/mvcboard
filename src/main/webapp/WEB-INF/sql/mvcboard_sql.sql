@@ -28,6 +28,20 @@ insert into mvcboard (idx, name, title, content, pass)
     values(seq_board_num.nextval, '강감찬', '자료실 제목 4입니다.', '내용', '1234');
 insert into mvcboard (idx, name, title, content, pass)
     values(seq_board_num.nextval, '대조영', '자료실 제목 5입니다.', '내용', '1234');
+insert into mvcboard (idx, name, title, content, pass)
+    values(seq_board_num.nextval, '둘리', '자료실 제목 6입니다.', '내용6', '1234');
+insert into mvcboard (idx, name, title, content, pass)
+    values(seq_board_num.nextval, '또치', '자료실 제목 7입니다.', '내용7', '1234');    
+insert into mvcboard (idx, name, title, content, pass)
+    values(seq_board_num.nextval, '또치', '자료실 제목 8입니다.', '내용8', '1234');
+insert into mvcboard (idx, name, title, content, pass)
+    values(seq_board_num.nextval, '또치', '자료실 제목 9입니다.', '내용9', '1234');    
+insert into mvcboard (idx, name, title, content, pass)
+    values(seq_board_num.nextval, '또치', '자료실 제목 10입니다.', '내용10', '1234');    
+insert into mvcboard (idx, name, title, content, pass)
+    values(seq_board_num.nextval, '또치', '자료실 제목 11입니다.', '내용11', '1234');   
+insert into mvcboard (idx, name, title, content, pass)
+    values(seq_board_num.nextval, '또치', '자료실 제목 11입니다.', '내용11', '1234');   
     
 select * from mvcboard;
 

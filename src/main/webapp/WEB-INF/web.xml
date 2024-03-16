@@ -28,6 +28,6 @@
   </servlet>
   <servlet-mapping>
   	<servlet-name>MVCBoardList</servlet-name>
-  	<url-pattern>/mvcboard/list.do</url-pattern>
+  	<url-pattern>/list.do</url-pattern>
   </servlet-mapping>
 </web-app>
