@@ -1,7 +1,11 @@
 package model2.mvcboard;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +19,40 @@ public class ListController extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		MVCBoardDAO dao = new MVCBoardDAO();
+		
+		// view에 전달할 매개변수용 map 생성
+		Map<String,Object> map = new HashMap<>();
+		
+		//검색 필드(title/content)
+		String searchField = req.getParameter("searchField");
+		//검색 키워드
+		String searchWord = req.getParameter("searchWord");
+		if(searchWord != null) {
+			map.put("searchField", searchField);
+			map.put("searchWord", searchWord);
+		}
+		
+		int totalCount = dao.selectCount(map);
+		
+		/* 페이지 처리 start */
+		ServletContext application = getServletContext();
+		
+		int pageSize = Integer.parseInt(application.getInitParameter("POSTS_PER_PAGE"));
+		int blockPage = Integer.parseInt(application.getInitParameter("PAGES_PER_BLOCK"));
+		
+		//현재 페이지 확인
+		int pageNum = 1; //기본값
+		String pageTemp = req.getParameter("pageNum");
+		//페이지 번호가 비어있지 않다면
+		if(pageTemp != null && !pageTemp.equals("")) pageNum = Integer.parseInt(pageTemp);
+		
+		int start = (pageNum - 1) * pageSize + 1; //첫 게시물 번호
+		int end = pageNum * pageSize;
+		map.put("start", start);
+		map.put("end", end);
+		/* 페이지 처리 end */
+		
+		List<MVCBoardDTO> boardLists = dao.selectListPage(map);
 	}
 	
 	

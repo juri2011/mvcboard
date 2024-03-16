@@ -17,7 +17,7 @@ public class MVCBoardDAO extends DBConnPool{
 			//쿼리문 준비
 			String query = "SELECT COUNT(*) FROM mvcboard";
 			
-			//검색한 키워드를 포함하는 게시물의 개수를 가져오도록 where절 추가
+			//제목/내용으로 검색한 키워드를 포함하는 게시물의 개수를 가져오도록 where절 추가
 			if(map.get("searchWord") != null) {
 				query += "WHERE " + map.get("searchField") + " "
 						+ "LIKE '%" + map.get("searchWord") + "%'";
