@@ -48,14 +48,15 @@ public class ListController extends HttpServlet{
 		//페이지 번호가 비어있지 않다면
 		if(pageTemp != null && !pageTemp.equals("")) pageNum = Integer.parseInt(pageTemp);
 		
-		int start = (pageNum - 1) * pageSize + 1; //첫 게시물 번호
-		int end = pageNum * pageSize;
+		int start = (pageNum - 1) * pageSize + 1; //현재 페이지의 첫 게시물 번호
+		int end = pageNum * pageSize; //현재 페이지의 마지막 게시물 번호
 		map.put("start", start);
 		map.put("end", end);
 		/* 페이지 처리 end */
 		
 		//게시물 목록 받기
 		List<MVCBoardDTO> boardLists = dao.selectListPage(map);
+		boardLists.forEach(board -> System.out.println(board.toString()));
 		dao.close();//DB 연결 닫기
 		
 		String pagingImg = BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, "../mvcboard/list.do");

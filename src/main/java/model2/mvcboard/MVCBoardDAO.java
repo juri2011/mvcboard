@@ -44,7 +44,8 @@ public class MVCBoardDAO extends DBConnPool{
 			List<MVCBoardDTO> board = new Vector<>();
 			
 			//게시글 번호와 게시글 정보를 가져온다.
-			String query = "SELECT * FROM ("
+			//rownum의 범위를 구하기 위해서 우선 rownum을 검색하는 select문을 from절에 서브쿼리로 넣어야 한다.
+			String query = "SELECT * FROM ( "
 						 + "	SELECT Tb.*, ROWNUM rNum FROM ( "
 						 + "		SELECT * FROM mvcboard ";
 			//검색조건이 있으면 where절 추가
@@ -53,7 +54,7 @@ public class MVCBoardDAO extends DBConnPool{
 					   + " LIKE '%" + map.get("searchWord") + "%' ";
 			}
 			
-			query+="		ORDERY BY idx DESC "
+			query+="		ORDER BY idx DESC "
 				 + "	)Tb "
 				 + " ) "
 				 + " WHERE rNum BETWEEN ? AND ?"; //게시물 구간은 인파라미터로
