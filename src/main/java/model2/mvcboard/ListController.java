@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import utils.BoardPage;
+
 public class ListController extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
@@ -52,7 +54,19 @@ public class ListController extends HttpServlet{
 		map.put("end", end);
 		/* 페이지 처리 end */
 		
+		//게시물 목록 받기
 		List<MVCBoardDTO> boardLists = dao.selectListPage(map);
+		dao.close();//DB 연결 닫기
+		
+		String pagingImg = BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, "../mvcboard/list.do");
+		map.put("pagingImg", pagingImg);
+		map.put("totalCount", totalCount);
+		map.put("pageSize", pageSize);
+		map.put("pageNum", pageNum);
+		
+		req.setAttribute("boardLists", boardLists);
+		req.setAttribute("map", map);
+		req.getRequestDispatcher("/mvcboard/list.jsp").forward(req, resp);
 	}
 	
 	

@@ -10,6 +10,18 @@
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
   
+  <!-- 한 화면에 출력할 페이지의 번호 개수 -->
+  <context-param>
+  	<param-name>POSTS_PER_PAGE</param-name>
+  	<param-value>10</param-value>
+  </context-param>
+  
+  <!-- 페이지 블록 계산 -->
+  <context-param>
+  	<param-name>PAGES_PER_BLOCK</param-name>
+  	<param-value>5</param-value>
+  </context-param>
+  
   <servlet>
   	<servlet-name>MVCBoardList</servlet-name>
   	<servlet-class>model2.mvcboard.ListController</servlet-class>
