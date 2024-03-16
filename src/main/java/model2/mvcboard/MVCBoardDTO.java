@@ -76,5 +76,12 @@ public class MVCBoardDTO {
 		this.visitcount = visitcount;
 	}
 	
+	@Override
+	public String toString() {
+		return "MVCBoardDTO [idx=" + idx + ", name=" + name + ", title=" + title + ", content=" + content
+				+ ", postdate=" + postdate + ", ofile=" + ofile + ", sfile=" + sfile + ", downcount=" + downcount
+				+ ", pass=" + pass + ", visitcount=" + visitcount + "]";
+	}
+	
 	
 }
