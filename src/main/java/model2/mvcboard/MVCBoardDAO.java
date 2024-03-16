@@ -1,5 +1,7 @@
 package model2.mvcboard;
 
-public class MVCBoardDAO {
+import common.DBConnPool;
+
+public class MVCBoardDAO extends DBConnPool{
 
 }
