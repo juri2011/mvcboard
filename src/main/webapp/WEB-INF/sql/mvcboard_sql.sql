@@ -31,4 +31,17 @@ insert into mvcboard (idx, name, title, content, pass)
     
 select * from mvcboard;
 
+-- 리스트
+select * from (
+    -- tb는 서브쿼리 결과의 alias
+    select Tb.*, ROWNUM rNum FROM (
+        SELECT * from mvcboard 
+        WHERE title LIKE '%제목%'
+        ORDER BY idx DESC
+    ) Tb
+)
+-- 여기서 페이지 정보를 가져온다.(시작게시글, 끝 게시글)
+WHERE rNum BETWEEN 1 AND 10;
+
+
 commit;
