@@ -23,6 +23,21 @@
   </context-param>
   
   <servlet>
+  	<servlet-name>MVCBoardWrite</servlet-name>
+  	<servlet-class>model2.mvcboard.WriteController</servlet-class>
+  	<multipart-config>
+  		<!-- 각 파일 최대 크기 1MB -->
+  		<max-file-size>1048576</max-file-size>
+  		<!-- 전체 파일 최대 크기 10MB -->
+  		<max-request-size>10485760</max-request-size>
+  	</multipart-config>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>MVCBoardWrite</servlet-name>
+  	<url-pattern>/write.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
   	<servlet-name>MVCBoardList</servlet-name>
   	<servlet-class>model2.mvcboard.ListController</servlet-class>
   </servlet>

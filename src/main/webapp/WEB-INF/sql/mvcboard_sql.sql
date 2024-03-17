@@ -41,7 +41,7 @@ insert into mvcboard (idx, name, title, content, pass)
 insert into mvcboard (idx, name, title, content, pass)
     values(seq_board_num.nextval, '또치', '자료실 제목 11입니다.', '내용11', '1234');   
 insert into mvcboard (idx, name, title, content, pass)
-    values(seq_board_num.nextval, '또치', '자료실 제목 11입니다.', '내용11', '1234');   
+    values(seq_board_num.nextval, '또치', '자료실 제목 12입니다.', '내용12', '1234');   
     
 select * from mvcboard;
 
