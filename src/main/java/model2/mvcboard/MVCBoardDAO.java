@@ -1,5 +1,6 @@
 package model2.mvcboard;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
@@ -209,6 +210,32 @@ public class MVCBoardDAO extends DBConnPool{
 				System.out.println("게시물 삭제 중 예외 발생");
 				e.printStackTrace();
 			}
+			return result;
+		}
+		
+		//게시글 데이터를 받아 DB에 저장되어 있던 내용을 갱신합니다(파일 업로드 지원).
+		public int updatePost(MVCBoardDTO dto) {
+			int result = 0;
+			try {
+				String query = "UPDATE mvcboard "
+						+ "SET title=?, name=?, content=?, ofile=?, sfile=? "
+						+ "WHERE idx=? and pass=?";
+				pstmt = con.prepareStatement(query);
+				pstmt.setString(1, dto.getTitle());
+				pstmt.setString(2, dto.getName());
+				pstmt.setString(3, dto.getContent());
+				pstmt.setString(4, dto.getOfile());
+				pstmt.setString(5, dto.getSfile());
+				pstmt.setString(6, dto.getIdx());
+				pstmt.setString(7, dto.getPass());
+				
+				result = pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				System.out.println("게시물 수정 중 예외 발생");
+				e.printStackTrace();
+			}
+			
 			return result;
 		}
 }
