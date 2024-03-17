@@ -1,6 +1,5 @@
 package model2.mvcboard;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
@@ -88,5 +87,31 @@ public class MVCBoardDAO extends DBConnPool{
 				e.printStackTrace();
 			}
 			return board;
+		}
+		
+		//파일 업로드를 지원하는 게시글 등록 기능
+		public int insertWrite(MVCBoardDTO dto) {
+			int result = 0;
+			
+			try {
+				String query = "INSERT INTO mvcboard (idx, name, title, content, ofile, sfile, pass) "
+					+ "VALUES("
+					+ "seq_board_num.NEXTVAL, ?, ?, ?, ?, ?, ?)";
+				pstmt = con.prepareStatement(query);
+				pstmt.setString(1, dto.getName());
+				pstmt.setString(2, dto.getTitle());
+				pstmt.setString(3, dto.getContent());
+				pstmt.setString(4, dto.getOfile());
+				pstmt.setString(5, dto.getSfile());
+				pstmt.setString(6, dto.getPass());
+				
+				result = pstmt.executeUpdate();
+				
+			} catch (Exception e) {
+				System.out.println("게시물 입력 중 예외 발생");
+				e.printStackTrace();
+			}
+			
+			return result;
 		}
 }
