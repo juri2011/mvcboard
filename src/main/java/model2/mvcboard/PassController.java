@@ -3,6 +3,7 @@ package model2.mvcboard;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import utils.FileUtil;
 import utils.JSFunction;
 
+@WebServlet("/pass.do")
 public class PassController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -35,6 +37,12 @@ public class PassController extends HttpServlet {
 		
 		if(confirmed) {//비밀번호가 같을 때
 			if(mode.equals("edit")) { //수정모드라면
+				/*
+ 					비밀번호를 session에 저장한 이유?
+ 					사용자가 URL 패턴을 이용해서 비밀번호 입력 없이 수정하기 페이지에 접속하면 안 되기 때문에
+ 					session에 저장된 비밀번호 값을 검사해서 정상적으로 수정 작업이 이루어질 수 있도록 하는 것이다.
+				*/
+				
 				HttpSession session = req.getSession();
 				session.setAttribute("pass", pass);
 				resp.sendRedirect("../mvcboard/edit.do?idx="+idx);
