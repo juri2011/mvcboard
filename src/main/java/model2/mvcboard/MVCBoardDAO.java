@@ -114,4 +114,36 @@ public class MVCBoardDAO extends DBConnPool{
 			
 			return result;
 		}
+		
+		//주어진 일련번호에 해당하는 게시물을  DTO에 담아 반환
+		public MVCBoardDTO selectView(String idx) {
+			MVCBoardDTO dto = new MVCBoardDTO();
+			String query = "SELECT idx, name, title, content, postdate, ofile, sfile, downcount, pass, visitcount "
+						 + "FROM mvcboard WHERE idx=?";
+			
+			try {
+				pstmt = con.prepareStatement(query);
+				pstmt.setString(1, idx);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					dto.setIdx(rs.getString(1));
+					dto.setName(rs.getString(2));
+					dto.setTitle(rs.getString(3));
+					dto.setContent(rs.getString(4));
+					dto.setPostdate(rs.getDate(5));
+					dto.setOfile(rs.getString(6));
+					dto.setSfile(rs.getString(7));
+					dto.setDowncount(rs.getInt(8));
+					dto.setPass(rs.getString(9));
+					dto.setVisitcount(rs.getInt(10));
+				}
+				
+			} catch (Exception e) {
+				System.out.println("게시물 상세보기 중 예외 발생");
+				e.printStackTrace();
+			}
+			
+			return dto;
+		}
 }
