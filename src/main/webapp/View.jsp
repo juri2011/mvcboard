@@ -29,7 +29,7 @@
 			<td>내용</td>
 			<td colspan="3" height="100">${dto.content}
 				<c:if test="${not empty dto.ofile and isImage eq true }">
-					<br /><img src="../Uploads/${dto.sFile}" style="max-width:100%;" alt="${dto.oFile}" />
+					<br /><img src="/mvcboard/Uploads/${dto.sfile}" style="max-width:100%;" alt="${dto.ofile}" />
 				</c:if>
 			</td>
 		</tr>
