@@ -162,7 +162,7 @@ public class MVCBoardDAO extends DBConnPool{
 			}
 		}
 		
-		//다운로드 시 다운로드 횟수 즈가
+		//다운로드 시 다운로드 횟수 증가
 		public void downCountPlus(String idx) {
 			String sql = "UPDATE mvcboard"
 					   + "SET downcount = downcount + 1"
