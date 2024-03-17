@@ -196,4 +196,19 @@ public class MVCBoardDAO extends DBConnPool{
 			}
 			return isCorr;
 		}
+		
+		//데이터 삭제
+		public int deletePost(String idx) {
+			int result = 0;
+			try {
+				String sql = "DELETE FROM mvcboard WHERE idx = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, idx);
+				result = pstmt.executeUpdate();
+			} catch (Exception e) {
+				System.out.println("게시물 삭제 중 예외 발생");
+				e.printStackTrace();
+			}
+			return result;
+		}
 }
