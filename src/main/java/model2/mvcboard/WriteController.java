@@ -39,9 +39,9 @@ public class WriteController extends HttpServlet{
 		//form값을 DTO에 저장
 		MVCBoardDTO dto = new MVCBoardDTO();
 		dto.setName(req.getParameter("name"));
-		dto.setName(req.getParameter("title"));
-		dto.setName(req.getParameter("content"));
-		dto.setName(req.getParameter("pass"));
+		dto.setTitle(req.getParameter("title"));
+		dto.setContent(req.getParameter("content"));
+		dto.setPass(req.getParameter("pass"));
 		
 		//원본 파일명과 저장된 파일 이름 설정
 		if(originalFileName != "") {
