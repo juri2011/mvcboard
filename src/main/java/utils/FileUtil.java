@@ -2,6 +2,8 @@ package utils;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -29,5 +31,20 @@ public class FileUtil {
 		}
 		//원본 파일명 return
 		return originalFileName;
-	} 
+	}
+	
+	public static String renameFile(String sDirectory, String fileName) {
+		//파일명에서 확장자만 빼오기(점이 2개 이상 포함될 수 있으므로 lastIndexOf()사용)
+		String ext = fileName.substring(fileName.lastIndexOf("."));
+		//현재날짜_시간으로 문자열을 가져온다.
+		String now = new SimpleDateFormat("yyyyMMdd_HmsS").format(new Date());
+		String newFileName = now + ext;
+		
+		//원본파일의 이름을 새 파일 이름으로 바꾼다.
+		File oldFile = new File(sDirectory + File.separator + fileName);
+		File newFile = new File(sDirectory + File.separator + newFileName);
+		oldFile.renameTo(newFile);
+		
+		return newFileName;
+	}
 }
