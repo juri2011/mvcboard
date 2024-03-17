@@ -34,8 +34,8 @@
 	<form name="writeFrm" method="post" action="../mvcboard/edit.do" enctype="multipart/form-data"
 		onsubmit="return validateForm(this);">
 	<input type="hidden" name="idx" value="${dto.idx}"/>
-	<input type="hidden" name="ofile" value="${dto.ofile}"/>
-	<input type="hidden" name="sfile" value="${dto.sfile}"/>
+	<input type="hidden" name="prevOfile" value="${dto.ofile}"/>
+	<input type="hidden" name="prevSfile" value="${dto.sfile}"/>
 		<table border="1" width="90%">
 			<tr>
 				<td>작성자</td>

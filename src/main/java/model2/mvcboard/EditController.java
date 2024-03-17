@@ -40,6 +40,7 @@ public class EditController extends HttpServlet{
 			originalFileName = FileUtil.uploadFile(req, saveDirectory);
 		}catch(Exception e){
 			JSFunction.alertBack(resp, "파일 업로드 오류입니다.");
+			e.printStackTrace();
 			return;
 		}
 		
