@@ -1,5 +1,6 @@
 package model2.mvcboard;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
@@ -145,5 +146,20 @@ public class MVCBoardDAO extends DBConnPool{
 			}
 			
 			return dto;
+		}
+		
+		//주어진 일련번호에 해당하는 게시물의 조회수를 1 증가
+		public void updateVisitCount(String idx) {
+			String query = "UPDATE mvcboard SET "
+						 + "visitcount = visitcount + 1 "
+						 + "WHERE idx = ?";
+			try {
+				pstmt = con.prepareStatement(query);
+				pstmt.setString(1, idx);
+				pstmt.executeQuery();
+			} catch (Exception e) {
+				System.out.println("게시물 조회수 증가 중 예외 발생");
+				e.printStackTrace();
+			}
 		}
 }
