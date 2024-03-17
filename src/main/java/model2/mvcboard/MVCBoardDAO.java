@@ -1,6 +1,5 @@
 package model2.mvcboard;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
@@ -159,6 +158,20 @@ public class MVCBoardDAO extends DBConnPool{
 				pstmt.executeQuery();
 			} catch (Exception e) {
 				System.out.println("게시물 조회수 증가 중 예외 발생");
+				e.printStackTrace();
+			}
+		}
+		
+		//다운로드 시 다운로드 횟수 즈가
+		public void downCountPlus(String idx) {
+			String sql = "UPDATE mvcboard"
+					   + "SET downcount = downcount + 1"
+					   + "WHERE idx = ?";
+			try {
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, idx);
+				pstmt.executeUpdate();
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
