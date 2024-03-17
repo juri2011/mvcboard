@@ -26,7 +26,7 @@ public class JSFunction {
 	}
 	
 	//alert를 띄우고 뒤로가기
-	public static void alertBack(HttpServletResponse resp, String msg, String url) {
+	public static void alertBack(HttpServletResponse resp, String msg) {
 		try {
 			resp.setContentType("text/html;charset=UTF-8");
 			/*
