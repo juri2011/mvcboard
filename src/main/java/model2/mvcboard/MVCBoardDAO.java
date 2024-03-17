@@ -175,4 +175,25 @@ public class MVCBoardDAO extends DBConnPool{
 				e.printStackTrace();
 			}
 		}
+		
+		//입력한 비밀번호가 실제 비밀번호와 일치하는지 테스트
+		public boolean confirmPassword(String pass, String idx) {
+			boolean isCorr = true;
+			try {
+				String sql = "SELECT COUNT(*) FROM mvcboard WHERE pass = ? AND idx = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, pass);
+				pstmt.setString(2, idx);
+				rs = pstmt.executeQuery();
+				rs.next();
+				//비밀번호가 일치하지 않으면
+				if(rs.getInt(1) == 0) {
+					isCorr = false;
+				}
+			} catch (Exception e) {
+				isCorr = false;
+				e.printStackTrace();
+			}
+			return isCorr;
+		}
 }
